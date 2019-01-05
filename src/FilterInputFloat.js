@@ -1,14 +1,18 @@
 import React, { Component } from 'react';
 
 const format = (value, decimals) => {
-  return { number: value * Math.pow(10, decimals), decimals };
+  const number = value * Math.pow(10, decimals);
+  if (value === '' || isNaN(number))
+    return { number: 0, decimals, active: false };
+  return { number, decimals, active: true };
 };
 
-const parse = value => {
-  return value.number / Math.pow(10, value.decimals);
+const parse = ({ number, decimals, active }) => {
+  if (!active) return '';
+  return number / Math.pow(10, decimals);
 };
 
-class FormInput extends Component {
+class FilterInputFloat extends Component {
   state = {
     value: parse(this.props.initial)
   };
@@ -28,4 +32,4 @@ class FormInput extends Component {
   }
 }
 
-export default FormInput;
+export default FilterInputFloat;

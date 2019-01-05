@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Form from './Form';
+import Filter from './Filter';
 import './App.css';
 
 /*
@@ -13,10 +13,14 @@ import './App.css';
 class App extends Component {
   state = {
     showForm: true,
-    form: { importeFrom: { number: 1234, decimals: 2 } }
+    form: {
+      importeFrom: { number: 1234, decimals: 2, active: true },
+      name: { value: '', active: false }
+    }
   };
-  onSubmit = () => {
-    this.setState({ showForm: false });
+  onSubmit = form => {
+    console.log(form);
+    this.setState({ form, showForm: false });
   };
   render() {
     return (
@@ -25,7 +29,7 @@ class App extends Component {
           show hide form
         </div>
         {this.state.showForm && (
-          <Form initial={this.state.form} onSubmit={this.onSubmit} />
+          <Filter initial={this.state.form} onSubmit={this.onSubmit} />
         )}
       </div>
     );
