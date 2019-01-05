@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
 import FormInput from './FormInput';
 class Form extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      initial: this.props.initial
+    };
+  }
   onChange = (ref, value) => {
     this.setState({ [ref]: value }, () => console.log(this.state));
   };
@@ -9,7 +14,11 @@ class Form extends Component {
     return (
       <form>
         Form
-        <FormInput initial={'1'} onChange={this.onChange} name="moneyFrom" />
+        <FormInput
+          initial={this.state.initial.importeFrom}
+          onChange={this.onChange}
+          name="moneyFrom"
+        />
         <button onClick={this.props.onSubmit}> submit</button>
       </form>
     );

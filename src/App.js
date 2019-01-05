@@ -2,8 +2,19 @@ import React, { Component } from 'react';
 import Form from './Form';
 import './App.css';
 
+/*
+        "importeRiesgoPendiente": {
+          "importeConSigno": 0,
+          "numeroDecimalesImporte": "2",
+          "moneda": { "divisa": "281", "digitoControlDivisa": "1" }
+        },
+*/
+
 class App extends Component {
-  state = { showForm: false, form: { importeFrom: 0 } };
+  state = {
+    showForm: true,
+    form: { importeFrom: { number: 1234, decimals: 2 } }
+  };
   onSubmit = () => {
     this.setState({ showForm: false });
   };
